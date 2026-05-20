@@ -1,0 +1,11 @@
+const express = require('express');
+const router = express.Router();
+const <%= config.varName %>Controller = require('../controllers/<%= config.varName %>Controller');
+
+router.get('/', <%= config.varName %>Controller.getAll);
+router.get('/:id', <%= config.varName %>Controller.getById);
+router.post('/', <%= config.varName %>Controller.create);
+router.put('/:id', <%= config.varName %>Controller.update);
+router.delete('/:id', <%= config.varName %>Controller.remove);
+
+module.exports = router;

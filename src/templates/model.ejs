@@ -1,0 +1,36 @@
+const mongoose = require('mongoose');
+
+const <%= config.varName %>Schema = new mongoose.Schema(
+  {
+<% for (const field of config.fields) { -%>
+    <%= field.name %>: {
+<% if (field.type === 'ObjectId') { -%>
+      type: mongoose.Schema.Types.ObjectId,
+<% } else { -%>
+      type: <%= field.type %>,
+<% } -%>
+<% if (field.required) { -%>
+      required: true,
+<% } -%>
+<% if (field.indexed) { -%>
+      index: true,
+<% } -%>
+<% if (field.ref) { -%>
+      ref: '<%= field.ref %>',
+<% } -%>
+    },
+<% } -%>
+  },
+  {
+    timestamps: <%= config.timestamps %>,
+    toJSON: {
+      transform(doc, ret) {
+        ret.id = ret._id;
+        delete ret._id;
+        delete ret.__v;
+      },
+    },
+  }
+);
+
+module.exports = mongoose.model('<%= config.modelName %>', <%= config.varName %>Schema);

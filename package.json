@@ -1,0 +1,56 @@
+{
+  "name": "express-mongo-scaffold",
+  "version": "0.1.0",
+  "description": "CLI generator for Express.js + MongoDB REST API boilerplate with Mongoose schemas, CRUD controllers, and Express routers",
+  "type": "module",
+  "bin": {
+    "express-mongo-scaffold": "./dist/cli/index.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.js"
+    }
+  },
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "build": "tsup && node scripts/copy-templates.js",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "express",
+    "mongodb",
+    "mongoose",
+    "scaffold",
+    "generator",
+    "cli",
+    "rest-api",
+    "crud",
+    "boilerplate"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^13.0.0",
+    "@inquirer/prompts": "^7.0.0",
+    "ejs": "^3.1.10"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "tsup": "^8.0.0",
+    "@types/ejs": "^3.1.5",
+    "@types/node": "^22.0.0",
+    "vitest": "^3.0.0"
+  }
+}
